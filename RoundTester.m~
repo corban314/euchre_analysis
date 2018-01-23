@@ -1,0 +1,107 @@
+classdef RoundTester
+    % testing class for the Round.m class.
+    properties
+        reference_card_list  % Contains all of the possible cards in the 24
+                             % card euchre deck.
+    end
+    
+    methods
+        function obj = RoundTester()
+            ns = Card('nine','spades');
+            ts = Card('ten','spades');
+            js = Card('jack','spades');
+            qs = Card('queen','spades');
+            ks = Card('king','spades');
+            as = Card('ace','spades');
+            nc = Card('nine','clubs');
+            tc = Card('ten','clubs');
+            jc = Card('jack','clubs');
+            qc = Card('queen','clubs');
+            kc = Card('king','clubs');
+            ac = Card('ace','clubs');
+            nd = Card('nine','diamonds');
+            td = Card('ten','diamonds');
+            jd = Card('jack','diamonds');
+            qd = Card('queen','diamonds');
+            kd = Card('king','diamonds');
+            ad = Card('ace','diamonds');
+            nh = Card('nine','hearts');
+            th = Card('ten','hearts');
+            jh = Card('jack','hearts');
+            qh = Card('queen','hearts');
+            kh = Card('king','hearts');
+            ah = Card('ace','hearts');
+            obj.reference_card_list = [ns,ts,js,qs,ks,as,nc,tc,jc,qc,kc,ac,nd,td,jd,qd,kd,ad,nh,th,jh,qh,kh,ah];
+        end
+        
+        function runTests(obj)
+            fprintf('Testing class Round...\n');
+            obj.testDeal();
+            obj.testBid();
+            obj.testPlay();
+            fprintf('All tests passed!\n');
+        end
+        
+        function testDeal(obj)
+            fprintf('Testing Deal method...\t');
+            % Test for dealer in the first position
+            r1 = Round(1);
+            r1.deal();
+            assert( (length(r1.hand_list(1).card_list)) == 5 );
+            assert( (length(r1.hand_list(2).card_list)) == 5 );
+            assert( (length(r1.hand_list(3).card_list)) == 5 );
+            assert( (length(r1.hand_list(4).card_list)) == 5 );
+            assert( (length(r1.card_turned_up)) == 1 );
+            assert( (length(r1.buried_cards)) == 3 );
+            % Verify that all of the cards are unique; together with the
+            % above stipulation, then we know that all of the cards have
+            % been dealt out in a correct deal.
+            list_of_entities = [r1.hand_list(1).cards,r1.hand_list(2).cards,r1.hand_list(3).cards,r1.hand_list(4).cards,r1.card_turned_up,r1.buried_cards];
+            ref_copy = obj.reference_card_list;
+            for this_group = list_of_entities
+                for card = 1:length(this_group)
+                    % For each card, iterate through the reference list to
+                    % verify that this card is in there.
+                    found = 0;
+                    for j = 1:24
+                        if card == ref_copy(j)
+                            
+                            found = found + 1;
+                        end
+                    end
+                    
+                    % Now verify that we have found the card precisely
+                    % once.
+                    switch found
+                        case 0
+                            error('Card not found in reference card list.');
+                        case 2
+                            error('Card found twice in reference card list.');
+                        case 1
+                            % Then we have found the card exactly once as
+                            % desired.
+                            ref_copy(j_
+                    end
+                end
+            end
+            assert(
+            fprintf('Passed!\n');
+        end
+        
+        function testBid(obj)
+            fprintf('Testing Bid method...\t');
+            
+            fprintf('Passed!\n');
+        end
+        
+        % play will also return the results of the round, so here we can
+        % verify that we are getting the correct results.
+        function testPlay(obj)
+            fprintf('Testing Play method...\t');
+            
+            fprintf('Passed!\n');
+        end
+    end
+    
+end
+

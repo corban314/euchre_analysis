@@ -1,0 +1,8 @@
+To Do:
+-Build rule-based bidding procedures into the AI.
+-Build bid method into the Round class.
+-Build play method into the Round class, where a Trick will be initialized based on the results of the bid, and then played out.
+-Build play method for the Game class, where the Rounds are automatically formed and played by the computer AI.
+-Build the user interface for interactive euchre playing, and write the script for initialize a manually-controlled game.
+-Build the script for doing the simulations to figure out optimal bidding strategy.
+-Figure out how to do a simulation-based decision for the AI based on the current known probabilities of a card being in a particular location.

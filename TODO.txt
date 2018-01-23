@@ -1,5 +1,5 @@
 To Do:
--Build rule-based bidding procedures into the AI.
+-Build rule-based bidding procedures into the AI (Hand class).
 -Build bid method into the Round class.
 -Build play method into the Round class, where a Trick will be initialized based on the results of the bid, and then played out.
 -Build play method for the Game class, where the Rounds are automatically formed and played by the computer AI.
